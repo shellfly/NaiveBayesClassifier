@@ -53,7 +53,7 @@ print(nltk.classify.accuracy(classifier, devtest_set))
 
 
 errors = []
-for (features, name, item) in original_featuresets[500:1000]:
+for (features, name, item) in original_featuresets[100:200]:
     guess = classifier.classify(features)
     if guess != name:
         print( 'name: ', name, 'guess: ', guess)
