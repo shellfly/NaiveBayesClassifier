@@ -19,14 +19,14 @@ topics = {
     19597091: "日本文学",
     19591985: "动漫"
 }
-def tokensize(content):
+def tokenize(content):
     content = content.replace(' ', '').replace('\n', '');
     return [w for w in jieba.cut(content) if len(w) > 1 and w not in stopwords]
 
 def build_dictionary(num):
     dictionary = set()
     for name in topics.values():
-        words = [w for l in open(name+".txt") for w in tokensize(l)]
+        words = [w for l in open(name+".txt") for w in tokenize(l)]
         words = Counter(words)
         dictionary |= set(w[0] for w in words.most_common(num))
     return dictionary
@@ -35,7 +35,7 @@ dictionary = build_dictionary(100)
 print('dictionary length: ', len(dictionary))
 
 def gen_features(content):
-    words = list(tokensize(content))
+    words = list(tokenize(content))
     return {w: words.count(w) for w in dictionary}
 
 original_featuresets = []
