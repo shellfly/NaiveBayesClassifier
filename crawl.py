@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-cookies = {a[0]:a[1] for a in [a.split('=') for a in """cookies from browser""".split(';')]}
+cookies = dict([a.split('=', 1) for a in """cookies from browser""".split(';')])
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
 topics = {
